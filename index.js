@@ -25,8 +25,11 @@ const showCategory = (categories) => {
 
         allCategory.appendChild(aCategory);
 
-        document.getElementById(`${category.category_id}`).onclick = function(){
+        document.getElementById(`${category.category_id}`).onclick = function () {
+
             const catUrl = ` https://openapi.programming-hero.com/api/news/category/${category.category_id} `;
+
+
 
             const loadAllCategory = async () => {
                 const resCategory = await fetch(catUrl);
@@ -34,12 +37,8 @@ const showCategory = (categories) => {
                 categoryInfo(dataCategory.data);
             }
 
-             loadAllCategory()
+            loadAllCategory();
         }
-
-
-
-
 
     }
 }
@@ -48,26 +47,43 @@ const showCategory = (categories) => {
 const categoryInfo = (infos) => {
 
     const categoryInfo = document.getElementById('category-info');
+    categoryInfo.innerText = '';
+
 
     for (const info of infos) {
 
         const catDiv = document.createElement('div')
-        catDiv.classList.add('d-flex','align-items-center','gap-3','mb-4')
+        catDiv.classList.add('d-flex','flex-column','flex-md-row', 'align-items-center', 'gap-3', 'mb-4')
         catDiv.innerHTML = `
-            <div class="w-50">
-                <img src="${info.image_url}" class="w-100">
+            <div>
+                <img src="${info.thumbnail_url}">
             </div>
-            <div class="w-50">
+            <div class="p-3">
                 <h4>${info.title}</h4>
-                <p>${info.details}</>
+                <p id ="${info._id}">${info.details}</p>
+                <div class="d-flex align-items-center gap-3 p-4">
+                    <div>
+                        <img src="${info.image_url}" style="height:60px; width : 60px;" class="rounded-circle">
+                    </div>
+                    <div>
+                        <p>${info.author.name}<p>
+                        <p>${info.author.published_date}</p>
+                    </div>
+                    <div>
+                        <p class="p-4">Total View: ${info.total_view}</p>
+                    </div>
+                </div>
             </div>
         
         `
         categoryInfo.appendChild(catDiv);
+    
+
 
     }
-}
 
+
+}
 
 loadCategory();
 
