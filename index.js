@@ -73,6 +73,8 @@ const categoryInfo = (infos) => {
     const categoryInfo = document.getElementById('category-info');
     categoryInfo.innerText = '';
 
+    const newsInfo = infos;
+    const sortNews = newsInfo.sort((a, b) => parseFloat(b.total_view) - parseFloat(a.total_view));
 
     for (const info of infos) {
 
@@ -113,13 +115,13 @@ const categoryInfo = (infos) => {
         categoryInfo.appendChild(catDiv);
         loadSpinner(false);
 
-        document.getElementById(`${info._id}`).onclick = function(){
+        document.getElementById(`${info._id}`).onclick = function () {
             const modalTitle = document.getElementById('exampleModalLabel');
             modalTitle.innerText = `${info.title}`;
             const modalBody = document.getElementById('modalBody');
             modalBody.innerText = `${info.details}`;
-            
-            console.log(modalTitle,modalBody);
+
+            console.log(modalTitle, modalBody);
         }
 
 
@@ -130,6 +132,9 @@ const categoryInfo = (infos) => {
         // console.log(news)
 
     }
+
+    // const sort = infos.sort((a, b) => parseFloat(b.total_view) - parseFloat(a.total_view));
+    // console.log(sort)
 
     const categoryInfoCount = document.getElementById('category-info').childElementCount;
     const foundMsg = document.getElementById('found-msg');
