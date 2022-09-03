@@ -11,9 +11,7 @@ const showCategory = (categories) => {
 
     const allCategory = document.getElementById('all-category');
 
-    for (const category of categories) {
-
-
+    categories.forEach(category => {
 
         const aCategory = document.createElement('a');
         aCategory.href = '#';
@@ -26,10 +24,8 @@ const showCategory = (categories) => {
         allCategory.appendChild(aCategory);
 
         document.getElementById(`${category.category_id}`).onclick = function () {
-
+            loadSpinner(true);
             const catUrl = ` https://openapi.programming-hero.com/api/news/category/${category.category_id} `;
-
-
 
             const loadAllCategory = async () => {
                 const resCategory = await fetch(catUrl);
@@ -38,10 +34,27 @@ const showCategory = (categories) => {
             }
 
             loadAllCategory();
+
+
         }
 
+
+    });
+
+
+};
+
+
+const spinner = document.getElementById('spinner');
+const loadSpinner = isLoading => {
+    if (isLoading) {
+        spinner.classList.remove('d-none');
+    }
+    else {
+        spinner.classList.add('d-none');
     }
 }
+
 
 
 const categoryInfo = (infos) => {
@@ -60,44 +73,48 @@ const categoryInfo = (infos) => {
             </div>
             <div class="p-3">
                 <h4>${info.title}</h4>
-                <p id ="${info._id}">${info.details}</p>
+                <p id ="">${info.details}</p>
                 <div class="d-flex align-items-center justify-content-between  p-4">
                     <div class ="d-flex gap-3">
                         <div>
                             <img src="${info.image_url}" style="height:60px; width : 60px;" class="rounded-circle">
                         </div>
                         <div>
-                            <p>${info.author.name}<p>
-                            <p>${info.author.published_date}</p>
+                            <p>${info.author.name ? info.author.name : 'No Data Found'}<p>
+                            <p>${info.author.published_date ? info.author.published_date : 'No Data Found'}</p>
                         </div>
                     </div>
                     <div>
-                        <p class="p-4">Total View: ${info.total_view}</p>
+                        <p class="p-4">Total View: ${info.total_view ? info.total_view : 'No Data Found'}</p>
                     </div>
                     <div>
-                        <p class="p-4">Total View: ${info.total_view}</p>
+                        <p class="p-4">Total View: ${info.total_view ? info.total_view : 'No Data Found'}</p>
                     </div>
                     <div>
-                        <p class="p-4">Rating: ${info.rating.number}</p>
+                        <p class="p-4">Rating: ${info.rating.number ? info.rating.number : 'No Data Found'}</p>
                     </div>
                     <div>
-                        <p><i class="fa-solid fa-arrow-right fs-4 "></i></p>
+                        <button class="border-0 bg-white" id="${info._id}"><i class="fa-solid fa-arrow-right fs-4 "></i></button>
                     </div>
                 </div>
             </div>
         
         `
         categoryInfo.appendChild(catDiv);
+        loadSpinner(false);
+         
+
         // const newsDetails = document.getElementById(`${info._id}`);
         // let newsDetailsText = newsDetails.innerText;
         // let news = newsDetailsText.substring(0,5)+'...'
         // // he = he.slice(0,500);
         // console.log(news)
 
-
-
     }
 
+    const categoryInfoCount = document.getElementById('category-info').childElementCount;
+    const foundMsg = document.getElementById('found-msg');
+    foundMsg.innerText = `${categoryInfoCount} items found`;
 
 }
 
