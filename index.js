@@ -9,11 +9,10 @@ const showCategory = (categories) => {
     const allCategory = document.getElementById('all-category');
     for (const category of categories) {
 
-        const aCategory = document.createElement('div');
-        aCategory.classList.add('container', 'pt-4', 'text-center','d-inline','mx-auto');
-        aCategory.innerHTML = ` 
-        <a class="text-decoration-none text-secondary fs-5" href="#">${category.category_name}</a>
-         `;
+        const aCategory = document.createElement('a');
+        aCategory.href= '#'
+        aCategory.classList.add('text-decoration-none', 'fs-5','text-secondary','p-3');
+        aCategory.innerText = ` ${category.category_name} `;
         allCategory.appendChild(aCategory);
     }
 }
