@@ -86,7 +86,7 @@ const categoryInfo = (infos) => {
             </div>
             <div class="p-2">
                 <h4>${info.title}</h4>
-                <p id ="">${info.details}</p>
+                    <p id ="${info.thumbnail_url}">${info.details}</p>
                 <div class="d-flex flex-column flex-md-row align-items-center justify-content-between  p-4">
                     <div class ="d-flex gap-3">
                         <div>
@@ -115,27 +115,20 @@ const categoryInfo = (infos) => {
         categoryInfo.appendChild(catDiv);
         loadSpinner(false);
 
+        const haha = document.getElementById(`${info.thumbnail_url}`);
+        const heh = haha.innerText;
+        const result = heh.substring(0, 500) + '...';
+        haha.innerText = result;
+
         document.getElementById(`${info._id}`).onclick = function () {
             const modalTitle = document.getElementById('exampleModalLabel');
             modalTitle.innerText = `${info.title}`;
             const modalBody = document.getElementById('modalBody');
             modalBody.innerText = `${info.details}`;
-
-            console.log(modalTitle, modalBody);
         }
 
-
-        // const newsDetails = document.getElementById(`${info._id}`);
-        // let newsDetailsText = newsDetails.innerText;
-        // let news = newsDetailsText.substring(0,5)+'...'
-        // // he = he.slice(0,500);
-        // console.log(news)
-
     }
-
-    // const sort = infos.sort((a, b) => parseFloat(b.total_view) - parseFloat(a.total_view));
-    // console.log(sort)
-
+    
     const categoryInfoCount = document.getElementById('category-info').childElementCount;
     const foundMsg = document.getElementById('found-msg');
     foundMsg.innerText = `${categoryInfoCount} items found`;
