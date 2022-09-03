@@ -103,7 +103,7 @@ const categoryInfo = (infos) => {
                             <p class="p-4">Rating: ${info.rating.number ? info.rating.number : 'No Data Found'}</p>
                         </div>
                         <div>
-                            <button class="border-0 bg-white" id="${info._id}"><i class="fa-solid fa-arrow-right fs-4 "></i></button>
+                            <button class="border-0 bg-white" id="${info._id}" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-arrow-right fs-4 "></i></button>
                         </div>
                     </div>
                 </div>
@@ -113,9 +113,14 @@ const categoryInfo = (infos) => {
         categoryInfo.appendChild(catDiv);
         loadSpinner(false);
 
-        document.getElementById(`${info._id}`).addEventListener('click',function(){
-
-        })
+        document.getElementById(`${info._id}`).onclick = function(){
+            const modalTitle = document.getElementById('exampleModalLabel');
+            modalTitle.innerText = `${info.title}`;
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerText = `${info.details}`;
+            
+            console.log(modalTitle,modalBody);
+        }
 
 
         // const newsDetails = document.getElementById(`${info._id}`);
