@@ -88,7 +88,7 @@ const categoryInfo = (infos) => {
                 <div class="d-flex flex-column flex-md-row align-items-center justify-content-between  p-4">
                     <div class ="d-flex gap-3">
                         <div>
-                            <img src="${info.image_url}" style="height:60px; width : 60px;" class="rounded-circle">
+                            <img src="${info.author.img}" style="height:60px; width : 60px;" class="rounded-circle">
                         </div>
                         <div>
                             <p>${info.author.name ? info.author.name : 'No Data Found'}<p>
@@ -112,6 +112,10 @@ const categoryInfo = (infos) => {
         `
         categoryInfo.appendChild(catDiv);
         loadSpinner(false);
+
+        document.getElementById(`${info._id}`).addEventListener('click',function(){
+
+        })
 
 
         // const newsDetails = document.getElementById(`${info._id}`);
