@@ -53,7 +53,7 @@ const categoryInfo = (infos) => {
     for (const info of infos) {
 
         const catDiv = document.createElement('div')
-        catDiv.classList.add('d-flex','flex-column','flex-md-row', 'align-items-center', 'gap-3', 'mb-4')
+        catDiv.classList.add('d-flex', 'flex-column', 'flex-md-row', 'align-items-center', 'gap-3', 'mb-4')
         catDiv.innerHTML = `
             <div>
                 <img src="${info.thumbnail_url}">
@@ -61,23 +61,39 @@ const categoryInfo = (infos) => {
             <div class="p-3">
                 <h4>${info.title}</h4>
                 <p id ="${info._id}">${info.details}</p>
-                <div class="d-flex align-items-center gap-3 p-4">
-                    <div>
-                        <img src="${info.image_url}" style="height:60px; width : 60px;" class="rounded-circle">
-                    </div>
-                    <div>
-                        <p>${info.author.name}<p>
-                        <p>${info.author.published_date}</p>
+                <div class="d-flex align-items-center justify-content-between  p-4">
+                    <div class ="d-flex gap-3">
+                        <div>
+                            <img src="${info.image_url}" style="height:60px; width : 60px;" class="rounded-circle">
+                        </div>
+                        <div>
+                            <p>${info.author.name}<p>
+                            <p>${info.author.published_date}</p>
+                        </div>
                     </div>
                     <div>
                         <p class="p-4">Total View: ${info.total_view}</p>
+                    </div>
+                    <div>
+                        <p class="p-4">Total View: ${info.total_view}</p>
+                    </div>
+                    <div>
+                        <p class="p-4">Rating: ${info.rating.number}</p>
+                    </div>
+                    <div>
+                        <p><i class="fa-solid fa-arrow-right fs-4 "></i></p>
                     </div>
                 </div>
             </div>
         
         `
         categoryInfo.appendChild(catDiv);
-    
+        // const newsDetails = document.getElementById(`${info._id}`);
+        // let newsDetailsText = newsDetails.innerText;
+        // let news = newsDetailsText.substring(0,5)+'...'
+        // // he = he.slice(0,500);
+        // console.log(news)
+
 
 
     }
