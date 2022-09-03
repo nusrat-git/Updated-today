@@ -85,7 +85,7 @@ const categoryInfo = (infos) => {
                 <img src="${info.thumbnail_url}">
             </div>
             <div class="p-2">
-                <h4>${info.title}</h4>
+                <h4 class="fw-bold">${info.title}</h4>
                     <p id ="${info.thumbnail_url}">${info.details}</p>
                 <div class="d-flex flex-column flex-md-row align-items-center justify-content-between  p-4">
                     <div class ="d-flex gap-3">
@@ -128,7 +128,7 @@ const categoryInfo = (infos) => {
         }
 
     }
-    
+
     const categoryInfoCount = document.getElementById('category-info').childElementCount;
     const foundMsg = document.getElementById('found-msg');
     foundMsg.innerText = `${categoryInfoCount} items found`;
