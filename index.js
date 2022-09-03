@@ -77,12 +77,12 @@ const categoryInfo = (infos) => {
     for (const info of infos) {
 
         const catDiv = document.createElement('div')
-        catDiv.classList.add('d-flex', 'flex-column', 'flex-md-row', 'align-items-center', 'gap-3', 'mb-4')
+        catDiv.classList.add('d-flex', 'flex-column', 'flex-md-row', 'align-items-center', 'gap-3', 'mb-4','justify-content-center','shadow-sm')
         catDiv.innerHTML = `
             <div>
                 <img src="${info.thumbnail_url}">
             </div>
-            <div class="p-3">
+            <div class="p-2">
                 <h4>${info.title}</h4>
                 <p id ="">${info.details}</p>
                 <div class="d-flex align-items-center justify-content-between  p-4">
