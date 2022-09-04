@@ -79,7 +79,6 @@ const categoryInfo = (infos) => {
     document.getElementById('blog-btn').onclick = function () {
         categoryInfo.innerText = '';
         foundMsg.innerText = '';
-        const blog = document.getElementById('blog');
         blog.classList.remove('d-none');
     }
 
