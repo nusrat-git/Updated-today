@@ -17,6 +17,17 @@ const showCategory = (categories) => {
 
     const allCategory = document.getElementById('all-category');
 
+    const catUrl = ` https://openapi.programming-hero.com/api/news/category/${categories[0].category_id} `;
+
+    const loadACategory = async () => {
+        const resCategory = await fetch(catUrl);
+        const dataCategory = await resCategory.json();
+        categoryInfo(dataCategory.data);
+        console.log(dataCategory.data);
+    }
+
+    loadACategory();
+
     categories.forEach(category => {
 
         const aCategory = document.createElement('a');
