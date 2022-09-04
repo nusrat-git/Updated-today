@@ -72,6 +72,16 @@ const categoryInfo = (infos) => {
 
     const categoryInfo = document.getElementById('category-info');
     categoryInfo.innerText = '';
+    const blog = document.getElementById('blog');
+    blog.classList.add('d-none');
+
+
+    document.getElementById('blog-btn').onclick = function () {
+        categoryInfo.innerText = '';
+        foundMsg.innerText = '';
+        const blog = document.getElementById('blog');
+        blog.classList.remove('d-none');
+    }
 
     const newsInfo = infos;
     const sortNews = newsInfo.sort((a, b) => parseFloat(b.total_view) - parseFloat(a.total_view));
@@ -93,16 +103,16 @@ const categoryInfo = (infos) => {
                             <img src="${info.author.img}" style="height:60px; width : 60px;" class="rounded-circle">
                         </div>
                         <div>
-                            <p>${info.author.name ? info.author.name : 'No Data Found'}<p>
+                            <p class="fw-bold">${info.author.name ? info.author.name : 'No Data Found'}<p>
                             <p>${info.author.published_date ? info.author.published_date : 'No Data Found'}</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
-                            <p class="p-4">Total View: ${info.total_view ? info.total_view : 'No Data Found'}</p>
+                            <p class="p-4"><span class="fw-bold pe-2">Total View:</span>${info.total_view ? info.total_view : 'No Data Found'}</p>
                         </div>
                          <div>
-                            <p class="p-4">Rating: ${info.rating.number ? info.rating.number : 'No Data Found'}</p>
+                            <p class="p-4"><span class="fw-bold pe-2">Rating:</span> ${info.rating.number ? info.rating.number : 'No Data Found'}</p>
                         </div>
                         <div>
                             <button class="border-0 bg-white" id="${info._id}" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-arrow-right fs-4 "></i></button>
@@ -133,6 +143,10 @@ const categoryInfo = (infos) => {
     const foundMsg = document.getElementById('found-msg');
     foundMsg.innerText = `${categoryInfoCount} items found`;
 
+}
+
+document.getElementById('blog-btn').onclick = function () {
+    document.getElementById('blog').classList.remove('d-none');
 }
 
 loadCategory();
